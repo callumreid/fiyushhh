@@ -1,0 +1,8 @@
+{
+  "name": "@lunchtime-smash/firetv",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "yarn workspace @lunchtime-smash/web build && cp -r ../../apps/web/dist/* ./dist/ && cp manifest.json ./dist/",
+    "package": "cd dist && zip -r ../lunchtime-smash-firetv.zip ."
+  }
+}

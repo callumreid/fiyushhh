@@ -1,0 +1,32 @@
+{
+  "appDetails": {
+    "name": "Lunchtime Smash",
+    "description": "Fast-paced platform fighter for Fire TV",
+    "version": "1.0.0",
+    "author": "Little Piggy",
+    "category": "Games",
+    "keywords": ["game", "fighter", "multiplayer", "local"]
+  },
+  "display": {
+    "orientations": ["landscape"],
+    "resolution": "1920x1080"
+  },
+  "webAppDetails": {
+    "launch_path": "/index.html",
+    "allowFullscreen": true,
+    "fullscreen": true
+  },
+  "deviceCapabilities": {
+    "allowsExternalDisplays": false,
+    "allowsGamepads": true,
+    "allowsKeyboardInput": true,
+    "allowsRemoteInput": true
+  },
+  "permissions": [],
+  "contentSecurityPolicy": {
+    "script-src": "'self' 'unsafe-eval' 'unsafe-inline'",
+    "style-src": "'self' 'unsafe-inline'",
+    "img-src": "'self' data: blob:",
+    "connect-src": "'self'"
+  }
+}
