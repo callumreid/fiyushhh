@@ -1,0 +1,12 @@
+{
+  "name": "@lunchtime-smash/fighters",
+  "version": "1.0.0",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "dependencies": {
+    "@babylonjs/core": "^6.0.0",
+    "@babylonjs/loaders": "^6.0.0",
+    "@lunchtime-smash/game-core": "workspace:*",
+    "@lunchtime-smash/systems": "workspace:*"
+  }
+}
