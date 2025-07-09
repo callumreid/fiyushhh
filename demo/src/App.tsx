@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Engine, Scene, FreeCamera, Vector3, HemisphericLight, MeshBuilder, StandardMaterial, Color3 } from '@babylonjs/core'
 
-type GameState = 'menu' | 'player-select' | 'character-select' | 'game'
+type GameState = 'menu' | 'player-select' | 'stage-select' | 'character-select' | 'game'
 
 const App: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -10,6 +10,7 @@ const App: React.FC = () => {
   const [playerCount, setPlayerCount] = useState(2)
   const [selectedCharacters, setSelectedCharacters] = useState<string[]>([])
   const [currentSelectingPlayer, setCurrentSelectingPlayer] = useState(0)
+  const [selectedStage, setSelectedStage] = useState('Game Show Set')
   
   // Complete fighter roster
   const fighters = [
@@ -24,7 +25,11 @@ const App: React.FC = () => {
   ]
 
   const stages = [
-    'Office Rooftop', 'Game Show Set', 'Cow Pasture', 'Neon Night', 'Bird Clouds'
+    { id: 'office-rooftop', name: 'Office Rooftop', description: 'Flat stage with urban backdrop' },
+    { id: 'game-show-set', name: 'Game Show Set', description: 'Tri-platform layout with center stage' },
+    { id: 'cow-pasture', name: 'Cow Pasture', description: 'Dual side platforms in pastoral setting' },
+    { id: 'neon-night', name: 'Neon Night', description: 'Center tower with neon cityscape' },
+    { id: 'bird-clouds', name: 'Bird Clouds', description: 'Moving platforms in the sky' }
   ]
 
   useEffect(() => {
@@ -115,6 +120,8 @@ const App: React.FC = () => {
         setGameState('player-select')
       } else if (event.code === 'Escape') {
         if (gameState === 'character-select') {
+          setGameState('stage-select')
+        } else if (gameState === 'stage-select') {
           setGameState('player-select')
         } else if (gameState === 'player-select') {
           setGameState('menu')
@@ -234,7 +241,7 @@ const App: React.FC = () => {
                   setPlayerCount(count)
                   setSelectedCharacters([])
                   setCurrentSelectingPlayer(0)
-                  setGameState('character-select')
+                  setGameState('stage-select')
                 }}
                 style={{
                   background: playerCount === count 
@@ -275,6 +282,106 @@ const App: React.FC = () => {
           
           <p style={{ position: 'absolute', bottom: '40px', fontSize: '16px', opacity: 0.7, textAlign: 'center' }}>
             Click to select • ESC: Back to menu
+          </p>
+        </div>
+      )}
+
+      {/* Stage Selection */}
+      {gameState === 'stage-select' && (
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'linear-gradient(135deg, rgba(72, 84, 96, 0.95) 0%, rgba(44, 62, 80, 0.95) 100%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontFamily: 'Arial, sans-serif',
+          zIndex: 1000
+        }}>
+          <h2 style={{ 
+            fontSize: '48px', 
+            marginBottom: '40px', 
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' 
+          }}>
+            SELECT STAGE
+          </h2>
+          
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '20px',
+            maxWidth: '1200px',
+            margin: '0 auto 40px',
+            padding: '0 20px'
+          }}>
+            {stages.map((stage, index) => (
+              <div
+                key={stage.id}
+                onClick={() => {
+                  setSelectedStage(stage.name)
+                  setGameState('character-select')
+                }}
+                style={{
+                  background: selectedStage === stage.name 
+                    ? 'rgba(255, 215, 0, 0.3)' 
+                    : 'rgba(255, 255, 255, 0.1)',
+                  border: selectedStage === stage.name 
+                    ? '3px solid #ffd700' 
+                    : '3px solid rgba(255, 255, 255, 0.3)',
+                  borderRadius: '12px',
+                  padding: '20px',
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = 'rgba(255, 215, 0, 0.2)'
+                  e.currentTarget.style.transform = 'scale(1.05)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = selectedStage === stage.name 
+                    ? 'rgba(255, 215, 0, 0.3)' 
+                    : 'rgba(255, 255, 255, 0.1)'
+                  e.currentTarget.style.transform = 'scale(1)'
+                }}
+              >
+                <div style={{
+                  width: '80px',
+                  height: '80px',
+                  margin: '0 auto 15px',
+                  background: 'linear-gradient(135deg, #667eea, #764ba2)',
+                  borderRadius: '12px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '32px',
+                  fontWeight: 'bold'
+                }}>
+                  🏟️
+                </div>
+                
+                <div style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '8px' }}>
+                  {stage.name}
+                </div>
+                
+                <div style={{ fontSize: '14px', opacity: 0.8, lineHeight: '1.4' }}>
+                  {stage.description}
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <p style={{ fontSize: '18px', opacity: 0.8, textAlign: 'center', marginBottom: '20px' }}>
+            Choose your battlefield for {playerCount} players
+          </p>
+          
+          <p style={{ position: 'absolute', bottom: '40px', fontSize: '16px', opacity: 0.7, textAlign: 'center' }}>
+            Click to select stage • ESC: Back to player select
           </p>
         </div>
       )}
@@ -445,7 +552,7 @@ const App: React.FC = () => {
           </div>
           
           <p style={{ position: 'absolute', bottom: '20px', left: '50%', transform: 'translateX(-50%)', fontSize: '14px', opacity: 0.7, textAlign: 'center' }}>
-            Click fighters to select • ESC: Back to player select
+            Click fighters to select • ESC: Back to stage select
           </p>
         </div>
       )}
@@ -532,7 +639,7 @@ const App: React.FC = () => {
               🥊 FIGHT! 🥊
             </div>
             <div style={{ fontSize: '16px', marginBottom: '10px' }}>
-              <strong>Players:</strong> {playerCount} • <strong>Stage:</strong> Game Show Set
+              <strong>Players:</strong> {playerCount} • <strong>Stage:</strong> {selectedStage}
             </div>
             <div style={{ fontSize: '14px', marginBottom: '15px', opacity: 0.9 }}>
               {selectedCharacters.length > 0 ? 
