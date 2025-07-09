@@ -1,0 +1,31 @@
+{
+  "name": "lunchtime-smash",
+  "version": "1.0.0",
+  "description": "Fast-paced platform fighter for Fire TV",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "yarn workspace @lunchtime-smash/web dev",
+    "build": "yarn workspace @lunchtime-smash/web build",
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "packageManager": "yarn@4.0.0"
+}

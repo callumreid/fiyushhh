@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lunchtime-smash/*": ["packages/*/src"]
+    }
+  },
+  "include": ["packages/**/*", "apps/**/*"],
+  "references": [
+    { "path": "./packages/game-core" },
+    { "path": "./packages/fighters" },
+    { "path": "./packages/stages" },
+    { "path": "./packages/systems" },
+    { "path": "./packages/ui" },
+    { "path": "./apps/web" }
+  ]
+}
