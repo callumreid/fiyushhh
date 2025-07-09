@@ -19,13 +19,5 @@
       "@lunchtime-smash/*": ["packages/*/src"]
     }
   },
-  "include": ["packages/**/*", "apps/**/*"],
-  "references": [
-    { "path": "./packages/game-core" },
-    { "path": "./packages/fighters" },
-    { "path": "./packages/stages" },
-    { "path": "./packages/systems" },
-    { "path": "./packages/ui" },
-    { "path": "./apps/web" }
-  ]
+  "include": ["packages/**/*", "apps/**/*"]
 }

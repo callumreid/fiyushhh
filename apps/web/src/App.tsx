@@ -1,11 +1,19 @@
-import React, { useEffect, useRef } from 'react'
-import { Engine, Scene, FreeCamera, Vector3, HemisphericLight, MeshBuilder } from '@babylonjs/core'
+import React, { useEffect, useRef, useState } from 'react'
+import { Engine, Scene } from '@babylonjs/core'
 import { PerformanceMonitor } from './components/PerformanceMonitor'
+import { GameManager } from './GameManager'
+import { GameUI } from '@lunchtime-smash/ui'
+import { GameStateType } from '@lunchtime-smash/game-core'
 
 const App: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const engineRef = useRef<Engine | null>(null)
   const sceneRef = useRef<Scene | null>(null)
+  const gameManagerRef = useRef<GameManager | null>(null)
+
+  const [gameState, setGameState] = useState<GameStateType>(GameStateType.MENU)
+  const [players, setPlayers] = useState<any[]>([])
+  const [stats, setStats] = useState<any>(null)
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -22,25 +30,30 @@ const App: React.FC = () => {
     const scene = new Scene(engine)
     sceneRef.current = scene
 
-    // Create camera
-    const camera = new FreeCamera('camera1', new Vector3(0, 5, -10), scene)
-    camera.setTarget(Vector3.Zero())
-    camera.attachToCanvas(canvasRef.current, true)
+    // Initialize game manager
+    const gameManager = new GameManager(scene, engine, canvasRef.current)
+    gameManagerRef.current = gameManager
 
-    // Create light
-    const light = new HemisphericLight('light1', new Vector3(0, 1, 0), scene)
-    light.intensity = 0.7
-
-    // Create test cube (placeholder for characters)
-    const box = MeshBuilder.CreateBox('box', { size: 2 }, scene)
-    box.position.y = 1
-
-    // Create ground (placeholder for stage)
-    const ground = MeshBuilder.CreateGround('ground', { width: 20, height: 20 }, scene)
-
-    // Render loop
+    // Game update loop
     engine.runRenderLoop(() => {
+      gameManager.update()
       scene.render()
+      
+      // Update UI state
+      const currentGameState = gameManager.getGameState().getCurrentState()
+      if (currentGameState !== gameState) {
+        setGameState(currentGameState)
+      }
+      
+      // Update players for HUD
+      const currentPlayers = gameManager.getGameState().getPlayers()
+      setPlayers(currentPlayers)
+      
+      // Update stats for results screen
+      if (currentGameState === GameStateType.RESULTS) {
+        const matchStats = gameManager.getMatchManager().getStats()
+        setStats(matchStats)
+      }
     })
 
     // Handle resize
@@ -51,9 +64,16 @@ const App: React.FC = () => {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      gameManager.dispose()
       engine.dispose()
     }
   }, [])
+
+  const handleStateChange = (newState: GameStateType, data?: any) => {
+    if (gameManagerRef.current) {
+      gameManagerRef.current.handleStateChange(newState, data)
+    }
+  }
 
   return (
     <div style={{ width: '100%', height: '100%', position: 'relative' }}>
@@ -61,6 +81,15 @@ const App: React.FC = () => {
         ref={canvasRef}
         style={{ width: '100%', height: '100%', display: 'block' }}
       />
+      
+      <GameUI
+        gameState={gameState}
+        players={players}
+        isPaused={gameState === GameStateType.PAUSE}
+        stats={stats}
+        onStateChange={handleStateChange}
+      />
+      
       <PerformanceMonitor engine={engineRef.current} />
     </div>
   )

@@ -967,11 +967,57 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lunchtime-smash/game-core@workspace:packages/game-core":
+"@lunchtime-smash/fighters@workspace:*, @lunchtime-smash/fighters@workspace:packages/fighters":
+  version: 0.0.0-use.local
+  resolution: "@lunchtime-smash/fighters@workspace:packages/fighters"
+  dependencies:
+    "@babylonjs/core": "npm:^6.0.0"
+    "@babylonjs/loaders": "npm:^6.0.0"
+    "@lunchtime-smash/game-core": "workspace:*"
+    "@lunchtime-smash/systems": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@lunchtime-smash/firetv@workspace:apps/firetv":
+  version: 0.0.0-use.local
+  resolution: "@lunchtime-smash/firetv@workspace:apps/firetv"
+  languageName: unknown
+  linkType: soft
+
+"@lunchtime-smash/game-core@workspace:*, @lunchtime-smash/game-core@workspace:packages/game-core":
   version: 0.0.0-use.local
   resolution: "@lunchtime-smash/game-core@workspace:packages/game-core"
   dependencies:
     "@babylonjs/core": "npm:^6.0.0"
+  languageName: unknown
+  linkType: soft
+
+"@lunchtime-smash/stages@workspace:*, @lunchtime-smash/stages@workspace:packages/stages":
+  version: 0.0.0-use.local
+  resolution: "@lunchtime-smash/stages@workspace:packages/stages"
+  dependencies:
+    "@babylonjs/core": "npm:^6.0.0"
+    "@lunchtime-smash/systems": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@lunchtime-smash/systems@workspace:*, @lunchtime-smash/systems@workspace:packages/systems":
+  version: 0.0.0-use.local
+  resolution: "@lunchtime-smash/systems@workspace:packages/systems"
+  dependencies:
+    "@babylonjs/core": "npm:^6.0.0"
+    "@lunchtime-smash/game-core": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@lunchtime-smash/ui@workspace:*, @lunchtime-smash/ui@workspace:packages/ui":
+  version: 0.0.0-use.local
+  resolution: "@lunchtime-smash/ui@workspace:packages/ui"
+  dependencies:
+    "@lunchtime-smash/fighters": "workspace:*"
+    "@lunchtime-smash/game-core": "workspace:*"
+    "@lunchtime-smash/stages": "workspace:*"
+    react: "npm:^18.2.0"
   languageName: unknown
   linkType: soft
 
@@ -982,6 +1028,11 @@ __metadata:
     "@babylonjs/core": "npm:^6.0.0"
     "@babylonjs/loaders": "npm:^6.0.0"
     "@babylonjs/materials": "npm:^6.0.0"
+    "@lunchtime-smash/fighters": "workspace:*"
+    "@lunchtime-smash/game-core": "workspace:*"
+    "@lunchtime-smash/stages": "workspace:*"
+    "@lunchtime-smash/systems": "workspace:*"
+    "@lunchtime-smash/ui": "workspace:*"
     "@types/react": "npm:^18.2.0"
     "@types/react-dom": "npm:^18.2.0"
     "@vitejs/plugin-react": "npm:^4.0.0"

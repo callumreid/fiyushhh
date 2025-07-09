@@ -12,6 +12,11 @@
     "@babylonjs/core": "^6.0.0",
     "@babylonjs/loaders": "^6.0.0",
     "@babylonjs/materials": "^6.0.0",
+    "@lunchtime-smash/fighters": "workspace:*",
+    "@lunchtime-smash/game-core": "workspace:*",
+    "@lunchtime-smash/stages": "workspace:*",
+    "@lunchtime-smash/systems": "workspace:*",
+    "@lunchtime-smash/ui": "workspace:*",
     "ammo.js": "^0.0.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

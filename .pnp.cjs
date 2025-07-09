@@ -14,18 +14,43 @@ const RAW_RUNTIME_STATE =
       "reference": "workspace:."\
     },\
     {\
+      "name": "@lunchtime-smash/firetv",\
+      "reference": "workspace:apps/firetv"\
+    },\
+    {\
       "name": "@lunchtime-smash/web",\
       "reference": "workspace:apps/web"\
     },\
     {\
+      "name": "@lunchtime-smash/fighters",\
+      "reference": "workspace:packages/fighters"\
+    },\
+    {\
       "name": "@lunchtime-smash/game-core",\
       "reference": "workspace:packages/game-core"\
+    },\
+    {\
+      "name": "@lunchtime-smash/stages",\
+      "reference": "workspace:packages/stages"\
+    },\
+    {\
+      "name": "@lunchtime-smash/systems",\
+      "reference": "workspace:packages/systems"\
+    },\
+    {\
+      "name": "@lunchtime-smash/ui",\
+      "reference": "workspace:packages/ui"\
     }\
   ],\
   "enableTopLevelFallback": true,\
   "ignorePatternData": "(^(?:\\\\.yarn\\\\/sdks(?:\\\\/(?!\\\\.{1,2}(?:\\\\/|$))(?:(?:(?!(?:^|\\\\/)\\\\.{1,2}(?:\\\\/|$)).)*?)|$))$)",\
   "fallbackExclusionList": [\
+    ["@lunchtime-smash/fighters", ["workspace:packages/fighters"]],\
+    ["@lunchtime-smash/firetv", ["workspace:apps/firetv"]],\
     ["@lunchtime-smash/game-core", ["workspace:packages/game-core"]],\
+    ["@lunchtime-smash/stages", ["workspace:packages/stages"]],\
+    ["@lunchtime-smash/systems", ["workspace:packages/systems"]],\
+    ["@lunchtime-smash/ui", ["workspace:packages/ui"]],\
     ["@lunchtime-smash/web", ["workspace:apps/web"]],\
     ["lunchtime-smash", ["workspace:."]]\
   ],\
@@ -940,10 +965,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:b0355c639a19be18b7fa96db243860f5d10e2bf1b612cb34d47f6462fb9d70caf763cd0a8e518f45b3b66ae3a218b2d81dedcdabc8a9f65b50597c7eaf8037d0#npm:6.49.0", {\
-        "packageLocation": "./.yarn/__virtual__/@babylonjs-loaders-virtual-b6daf466c7/3/.yarn/berry/cache/@babylonjs-loaders-npm-6.49.0-0f3d333b0d-10c0.zip/node_modules/@babylonjs/loaders/",\
+      ["virtual:bdd6612ca7981401fab0a119083d1fbf70c5b99006d18a1390e8ad193723d5bc385b2e10ac2208fea89fbc9cb3a782ad5988eac4bb314b62c7619c4682461420#npm:6.49.0", {\
+        "packageLocation": "./.yarn/__virtual__/@babylonjs-loaders-virtual-9797eb21c4/3/.yarn/berry/cache/@babylonjs-loaders-npm-6.49.0-0f3d333b0d-10c0.zip/node_modules/@babylonjs/loaders/",\
         "packageDependencies": [\
-          ["@babylonjs/loaders", "virtual:b0355c639a19be18b7fa96db243860f5d10e2bf1b612cb34d47f6462fb9d70caf763cd0a8e518f45b3b66ae3a218b2d81dedcdabc8a9f65b50597c7eaf8037d0#npm:6.49.0"],\
+          ["@babylonjs/loaders", "virtual:bdd6612ca7981401fab0a119083d1fbf70c5b99006d18a1390e8ad193723d5bc385b2e10ac2208fea89fbc9cb3a782ad5988eac4bb314b62c7619c4682461420#npm:6.49.0"],\
           ["@babylonjs/core", "npm:6.49.0"],\
           ["@types/babylonjs-gltf2interface", null],\
           ["@types/babylonjs__core", null],\
@@ -1633,6 +1658,28 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@lunchtime-smash/fighters", [\
+      ["workspace:packages/fighters", {\
+        "packageLocation": "./packages/fighters/",\
+        "packageDependencies": [\
+          ["@lunchtime-smash/fighters", "workspace:packages/fighters"],\
+          ["@babylonjs/core", "npm:6.49.0"],\
+          ["@babylonjs/loaders", "virtual:bdd6612ca7981401fab0a119083d1fbf70c5b99006d18a1390e8ad193723d5bc385b2e10ac2208fea89fbc9cb3a782ad5988eac4bb314b62c7619c4682461420#npm:6.49.0"],\
+          ["@lunchtime-smash/game-core", "workspace:packages/game-core"],\
+          ["@lunchtime-smash/systems", "workspace:packages/systems"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@lunchtime-smash/firetv", [\
+      ["workspace:apps/firetv", {\
+        "packageLocation": "./apps/firetv/",\
+        "packageDependencies": [\
+          ["@lunchtime-smash/firetv", "workspace:apps/firetv"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
     ["@lunchtime-smash/game-core", [\
       ["workspace:packages/game-core", {\
         "packageLocation": "./packages/game-core/",\
@@ -1643,14 +1690,54 @@ const RAW_RUNTIME_STATE =
         "linkType": "SOFT"\
       }]\
     ]],\
+    ["@lunchtime-smash/stages", [\
+      ["workspace:packages/stages", {\
+        "packageLocation": "./packages/stages/",\
+        "packageDependencies": [\
+          ["@lunchtime-smash/stages", "workspace:packages/stages"],\
+          ["@babylonjs/core", "npm:6.49.0"],\
+          ["@lunchtime-smash/systems", "workspace:packages/systems"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@lunchtime-smash/systems", [\
+      ["workspace:packages/systems", {\
+        "packageLocation": "./packages/systems/",\
+        "packageDependencies": [\
+          ["@lunchtime-smash/systems", "workspace:packages/systems"],\
+          ["@babylonjs/core", "npm:6.49.0"],\
+          ["@lunchtime-smash/game-core", "workspace:packages/game-core"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
+    ["@lunchtime-smash/ui", [\
+      ["workspace:packages/ui", {\
+        "packageLocation": "./packages/ui/",\
+        "packageDependencies": [\
+          ["@lunchtime-smash/ui", "workspace:packages/ui"],\
+          ["@lunchtime-smash/fighters", "workspace:packages/fighters"],\
+          ["@lunchtime-smash/game-core", "workspace:packages/game-core"],\
+          ["@lunchtime-smash/stages", "workspace:packages/stages"],\
+          ["react", "npm:18.3.1"]\
+        ],\
+        "linkType": "SOFT"\
+      }]\
+    ]],\
     ["@lunchtime-smash/web", [\
       ["workspace:apps/web", {\
         "packageLocation": "./apps/web/",\
         "packageDependencies": [\
           ["@lunchtime-smash/web", "workspace:apps/web"],\
           ["@babylonjs/core", "npm:6.49.0"],\
-          ["@babylonjs/loaders", "virtual:b0355c639a19be18b7fa96db243860f5d10e2bf1b612cb34d47f6462fb9d70caf763cd0a8e518f45b3b66ae3a218b2d81dedcdabc8a9f65b50597c7eaf8037d0#npm:6.49.0"],\
+          ["@babylonjs/loaders", "virtual:bdd6612ca7981401fab0a119083d1fbf70c5b99006d18a1390e8ad193723d5bc385b2e10ac2208fea89fbc9cb3a782ad5988eac4bb314b62c7619c4682461420#npm:6.49.0"],\
           ["@babylonjs/materials", "virtual:b0355c639a19be18b7fa96db243860f5d10e2bf1b612cb34d47f6462fb9d70caf763cd0a8e518f45b3b66ae3a218b2d81dedcdabc8a9f65b50597c7eaf8037d0#npm:6.49.0"],\
+          ["@lunchtime-smash/fighters", "workspace:packages/fighters"],\
+          ["@lunchtime-smash/game-core", "workspace:packages/game-core"],\
+          ["@lunchtime-smash/stages", "workspace:packages/stages"],\
+          ["@lunchtime-smash/systems", "workspace:packages/systems"],\
+          ["@lunchtime-smash/ui", "workspace:packages/ui"],\
           ["@types/react", "npm:18.3.23"],\
           ["@types/react-dom", "virtual:b0355c639a19be18b7fa96db243860f5d10e2bf1b612cb34d47f6462fb9d70caf763cd0a8e518f45b3b66ae3a218b2d81dedcdabc8a9f65b50597c7eaf8037d0#npm:18.3.7"],\
           ["@vitejs/plugin-react", "virtual:b0355c639a19be18b7fa96db243860f5d10e2bf1b612cb34d47f6462fb9d70caf763cd0a8e518f45b3b66ae3a218b2d81dedcdabc8a9f65b50597c7eaf8037d0#npm:4.6.0"],\
